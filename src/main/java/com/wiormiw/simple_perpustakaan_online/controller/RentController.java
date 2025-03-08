@@ -25,7 +25,7 @@ public class RentController {
 
     @PutMapping("/{bookId}")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<RentDTO> rentBook(
+    public ResponseEntity<RentHistoryResponseDTO> rentBook(
             @PathVariable UUID bookId
     ) {
         CustomUserDetails userDetails = (CustomUserDetails) SecurityContextHolder.getContext()
@@ -46,13 +46,13 @@ public class RentController {
 
     @GetMapping("/user")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<RentDTO> getUserRent() {
+    public ResponseEntity<RentHistoryResponseDTO> getUserRent() {
         CustomUserDetails userDetails = (CustomUserDetails) SecurityContextHolder.getContext()
                 .getAuthentication()
                 .getPrincipal();
 
         UUID userId = userDetails.getId();
-        RentDTO rent = rentServiceImpl.getUserRent(userId);
+        RentHistoryResponseDTO rent = rentServiceImpl.getUserRent(userId);
         return ResponseEntity.ok(rent);
     }
 

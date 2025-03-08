@@ -56,8 +56,8 @@ public class BookController {
         return ResponseEntity.ok(bookServiceImpl.createBook(bookCreateDTO));
     }
 
-    @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/detail/{id}")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<BookDTO> getBookById(
             @PathVariable UUID id
     ) {
