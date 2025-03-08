@@ -9,12 +9,12 @@ import java.util.UUID;
 
 @Service
 public interface RentService {
-    public RentDTO rentBook(UUID userId, UUID bookId);
+    public RentHistoryResponseDTO rentBook(UUID userId, UUID bookId);
     public RentHistoryResponseDTO returnBook(UUID rentId);
     public List<RentDTO> getAllRents();
     public List<RentHistoryResponseDTO> getAllRentsHistories();
     public long getTotalActiveRents();
     public List<RentHistoryResponseDTO> getRecentRentHistory(int limit);
-    public RentDTO getUserRent(UUID userId);
+    public RentHistoryResponseDTO getUserRent(UUID userId);
     public List<RentHistoryResponseDTO> getUserRentHistories(UUID userId);
 }

@@ -44,7 +44,7 @@ public class RentServiceImpl implements RentService {
     }
 
     @Transactional
-    public RentDTO rentBook(UUID userId, UUID bookId) {
+    public RentHistoryResponseDTO rentBook(UUID userId, UUID bookId) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new ResourceNotFoundException("Book not found"));
 
@@ -67,7 +67,15 @@ public class RentServiceImpl implements RentService {
 
         rent = rentRepository.save(rent);
 
-        return mapToRentDTO(rent);
+        return new RentHistoryResponseDTO(
+                rent.getId(),
+                rent.getBook().getTitle(),
+                rent.getUser().getProfile().getFullName(),
+                rent.getStartDate(),
+                rent.getEndDate(),
+                rent.getEndDate(),
+                rent.getStatus().name()
+        );
     }
 
     @Transactional
@@ -127,9 +135,19 @@ public class RentServiceImpl implements RentService {
                 .collect(Collectors.toList());
     }
 
-    public RentDTO getUserRent(UUID userId) {
-        return rentRepository.findByUserId(userId).map(this::mapToRentDTO)
+    public RentHistoryResponseDTO getUserRent(UUID userId) {
+        Rent rent = rentRepository.findByUserId(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User rent not found, please check whether user currently rented!"));
+
+        return new RentHistoryResponseDTO(
+                rent.getId(),
+                rent.getBook().getTitle(),
+                rent.getUser().getProfile().getFullName(),
+                rent.getStartDate(),
+                rent.getEndDate(),
+                rent.getEndDate(),
+                rent.getStatus().name()
+        );
     }
 
     public List<RentHistoryResponseDTO> getUserRentHistories(UUID userId) {
