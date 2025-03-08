@@ -37,7 +37,7 @@ public class Profile {
     private String address;
 
     @Column(name = "profile_url", nullable = false)
-    private String profileUrl = "https://asset.cloudinary.com/dwshiglkf/0404818aec82bf021ea3d720670fce96";
+    private String profileUrl = "https://res.cloudinary.com/dwshiglkf/image/upload/v1741363542/default_profile_akzhb1.png";
 
     @Column(name = "phone_number", nullable = false, length = 13)
     private String phoneNumber;

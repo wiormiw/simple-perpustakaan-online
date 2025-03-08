@@ -37,7 +37,7 @@ public class Book {
     private int quantity;
 
     @Column(name = "cover_url", nullable = false)
-    private String coverUrl = "https://asset.cloudinary.com/dwshiglkf/47049aada2ea8d5d69a42e06bdc5371d";
+    private String coverUrl = "https://res.cloudinary.com/dwshiglkf/image/upload/v1741364263/open-book_g6xbmx.png";
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<Rent> rents = new ArrayList<>();
