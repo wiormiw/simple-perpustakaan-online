@@ -37,7 +37,7 @@ public class SecurityConfig {
     @Bean
     public UrlBasedCorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*", "http://127.0.0.1"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://127.0.0.1"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Authorization"));
         configuration.setAllowCredentials(true);
@@ -56,6 +56,7 @@ public class SecurityConfig {
                         .requestMatchers("/users/profile/**").hasRole("USER")
                         .requestMatchers("/users/**").hasRole("ADMIN")
                         .requestMatchers("/books/get-all").hasRole("USER")
+                        .requestMatchers("/books/detail/{id}").hasRole("USER")
                         .requestMatchers("/books/**").hasRole("ADMIN")
                         .requestMatchers("/rent/all-rents").hasRole("ADMIN")
                         .requestMatchers("/rent/all-rents/**").hasRole("ADMIN")
