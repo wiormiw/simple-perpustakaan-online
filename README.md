@@ -33,7 +33,9 @@ mvn clean package
 4. super user admin account: email = admin@example.com, password = Password
 5. contact @me to get full APISpecs (not creating swagger yet)
 
-# Things to consider:
+# Things to consider (interesting to implement in future):
 1. Better error handling
 2. Build to docker
 3. Swagger (OpenAPI)
+4. Refresh & Access token
+5. Caching
